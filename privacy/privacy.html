@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - AI Career Customizer</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border: #334155;
+            --radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 32px;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+
+        .last-updated {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        section {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        h2 {
+            font-size: 20px;
+            margin-bottom: 16px;
+            color: var(--primary);
+        }
+
+        h3 {
+            font-size: 16px;
+            margin: 20px 0 12px;
+        }
+
+        p {
+            margin-bottom: 12px;
+            color: var(--text-secondary);
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-bottom: 16px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+        }
+
+        .highlight {
+            background: rgba(99, 102, 241, 0.1);
+            border-left: 3px solid var(--primary);
+            padding: 16px;
+            border-radius: 0 var(--radius) var(--radius) 0;
+            margin: 16px 0;
+        }
+
+        .highlight p {
+            margin: 0;
+            color: var(--text-primary);
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .provider-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .provider-link {
+            padding: 12px 20px;
+            background: var(--bg-dark);
+            border-radius: 8px;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .provider-link:hover {
+            transform: translateY(-2px);
+            text-decoration: none;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0 20px;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>✨ AI Career Customizer</h1>
+            <p class="last-updated">Privacy Policy - Last Updated: December 2024</p>
+        </header>
+
+        <section>
+            <h2>Overview</h2>
+            <p>AI Career Customizer is a browser extension that helps you create tailored resumes and cover letters
+                using AI. We are committed to protecting your privacy and being transparent about how your data is
+                handled.</p>
+
+            <div class="highlight">
+                <p><strong>Key Point:</strong> All your data is stored locally in your browser. We do not operate any
+                    servers and do not have access to your personal information.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Data We Collect</h2>
+            <p>The extension stores the following data locally in your browser:</p>
+            <ul>
+                <li><strong>API Keys:</strong> Your AI provider API key (OpenAI, Anthropic, or Google)</li>
+                <li><strong>Resume Data:</strong> Your uploaded or pasted resume content</li>
+                <li><strong>Job Data:</strong> Temporarily captured job posting information</li>
+                <li><strong>Profiles:</strong> Saved profile configurations</li>
+                <li><strong>Settings:</strong> Your extension preferences</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>How Data is Transmitted</h2>
+            <p>When you generate documents, the following data is sent to your selected AI provider:</p>
+            <ul>
+                <li>The captured job posting content</li>
+                <li>Your resume content</li>
+                <li>Generation preferences (emphasis settings, tone)</li>
+            </ul>
+
+            <div class="highlight">
+                <p><strong>Important:</strong> Data is sent directly from your browser to the AI provider's API using
+                    your own API key. We (the extension developers) never see or process this data.</p>
+            </div>
+
+            <h3>Supported AI Providers</h3>
+            <p>The extension supports multiple AI providers. Each has their own privacy policy governing how they handle
+                API requests:</p>
+
+            <div class="provider-links">
+                <a href="https://openai.com/policies/privacy-policy" target="_blank" class="provider-link">
+                    OpenAI Privacy Policy
+                </a>
+                <a href="https://www.anthropic.com/privacy" target="_blank" class="provider-link">
+                    Anthropic Privacy Policy
+                </a>
+                <a href="https://policies.google.com/privacy" target="_blank" class="provider-link">
+                    Google Privacy Policy
+                </a>
+            </div>
+        </section>
+
+        <section>
+            <h2>Data Storage & Security</h2>
+            <ul>
+                <li><strong>Local Storage Only:</strong> All data is stored using Chrome's built-in storage API
+                    (chrome.storage.local), which encrypts data at rest</li>
+                <li><strong>No External Servers:</strong> We do not operate any servers or databases</li>
+                <li><strong>Secure Transmission:</strong> All API calls use HTTPS encryption</li>
+                <li><strong>Consent Required:</strong> The extension asks for your consent before storing any data</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>PII Anonymization</h2>
+            <p>The extension offers an optional PII (Personally Identifiable Information) anonymization feature that
+                can:</p>
+            <ul>
+                <li>Detect email addresses, phone numbers, and physical addresses in your resume</li>
+                <li>Replace this information with placeholders before sending to the AI provider</li>
+                <li>Help reduce exposure of sensitive personal data</li>
+            </ul>
+            <p>This feature is optional and can be enabled in the Settings page.</p>
+        </section>
+
+        <section>
+            <h2>Your Rights & Controls</h2>
+            <p>You have full control over your data:</p>
+            <ul>
+                <li><strong>View Data:</strong> All stored data can be viewed in the Settings page</li>
+                <li><strong>Delete Data:</strong> Use "Clear All Data" in Settings to remove everything</li>
+                <li><strong>Revoke Consent:</strong> You can revoke consent at any time, which clears all stored data
+                </li>
+                <li><strong>Uninstall:</strong> Removing the extension deletes all associated data from your browser
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Permissions</h2>
+            <p>The extension requests only the minimum permissions necessary:</p>
+            <ul>
+                <li><strong>activeTab:</strong> To capture job posting content from the current page</li>
+                <li><strong>storage:</strong> To save your settings, resume, and API key locally</li>
+                <li><strong>scripting:</strong> To extract job information from web pages</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Third-Party Services</h2>
+            <p>This extension is a third-party tool and is not affiliated with OpenAI, Anthropic, or Google. When using
+                AI features:</p>
+            <ul>
+                <li>You are using your own API key and quota</li>
+                <li>The respective provider's terms of service and privacy policies apply</li>
+                <li>We recommend reviewing each provider's data handling practices</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Changes to This Policy</h2>
+            <p>We may update this privacy policy from time to time. Any changes will be reflected in the "Last Updated"
+                date at the top of this page. Continued use of the extension after changes constitutes acceptance of the
+                updated policy.</p>
+        </section>
+
+        <section>
+            <h2>Contact</h2>
+            <p>If you have any questions about this privacy policy or the extension's data practices, please open an
+                issue on our GitHub repository or contact us through the Chrome Web Store listing.</p>
+        </section>
+
+        <footer>
+            <p>AI Career Customizer v1.0.0</p>
+        </footer>
+    </div>
+</body>
+
+</html>

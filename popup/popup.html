@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Career Customizer</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+
+<body>
+  <div class="popup-container">
+    <header class="popup-header">
+      <div class="logo">
+        <span class="logo-icon">✨</span>
+        <h1>AI Career Customizer</h1>
+      </div>
+      <button class="help-btn" id="helpBtn" title="Help & Features">?</button>
+    </header>
+
+    <!-- Help Modal -->
+    <div class="help-overlay" id="helpOverlay">
+      <div class="help-modal">
+        <div class="help-header">
+          <span>✨</span>
+          <h2>Features</h2>
+          <button class="help-close" id="helpClose">×</button>
+        </div>
+        <ul class="feature-list">
+          <li>
+            <span class="feature-icon">🎯</span>
+            <div>
+              <strong>Smart Job Capture</strong>
+              <p>Extract job details from any job posting page or URL</p>
+            </div>
+          </li>
+          <li>
+            <span class="feature-icon">📄</span>
+            <div>
+              <strong>Tailored Resume</strong>
+              <p>AI-powered resume customization for each job</p>
+            </div>
+          </li>
+          <li>
+            <span class="feature-icon">✉️</span>
+            <div>
+              <strong>Cover Letter</strong>
+              <p>Generate personalized cover letters instantly</p>
+            </div>
+          </li>
+          <li>
+            <span class="feature-icon">🌍</span>
+            <div>
+              <strong>Multi-language</strong>
+              <p>Output in German or English</p>
+            </div>
+          </li>
+          <li>
+            <span class="feature-icon">🤖</span>
+            <div>
+              <strong>AI Providers</strong>
+              <p>OpenAI, Anthropic, Google Gemini & more</p>
+            </div>
+          </li>
+          <li>
+            <span class="feature-icon">🔒</span>
+            <div>
+              <strong>Privacy First</strong>
+              <p>Your data stays on your device</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <main class="popup-main">
+      <!-- Status Bar -->
+      <div class="status-bar" id="statusSection">
+        <div class="status-item" id="apiKeyStatus">
+          <span class="status-icon">○</span>
+          <span class="status-text">API Key</span>
+        </div>
+        <div class="status-divider"></div>
+        <div class="status-item" id="resumeStatus">
+          <span class="status-icon">○</span>
+          <span class="status-text">Resume</span>
+        </div>
+      </div>
+
+      <!-- Options Row: Language + Generate -->
+      <div class="options-row">
+        <!-- Language Selection -->
+        <div class="options-card">
+          <span class="options-label">Language</span>
+          <div class="language-toggle">
+            <label class="lang-option">
+              <input type="radio" name="language" value="de" id="langDE" checked>
+              <span>DE</span>
+            </label>
+            <label class="lang-option">
+              <input type="radio" name="language" value="en" id="langEN">
+              <span>EN</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Generation Options -->
+        <div class="options-card">
+          <span class="options-label">Generate</span>
+          <div class="generate-toggles">
+            <label class="toggle-chip" title="Tailored Resume">
+              <input type="checkbox" id="generateResume" checked>
+              <span>📄 CV</span>
+            </label>
+            <label class="toggle-chip" title="Cover Letter">
+              <input type="checkbox" id="generateCoverLetter" checked>
+              <span>✉️ Letter</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Job URL Input -->
+      <div class="url-row">
+        <div class="url-input-wrapper">
+          <input type="url" id="jobUrl" class="url-input" placeholder="Job URL or capture from page...">
+          <button class="btn-clear" id="clearUrlBtn" title="Clear">×</button>
+        </div>
+      </div>
+
+      <!-- Job Info Preview -->
+      <div class="job-preview" id="jobPreview" style="display: none;">
+        <div class="job-info">
+          <span class="job-badge">📌</span>
+          <div class="job-details">
+            <span class="job-title" id="jobTitle"></span>
+            <span class="job-company" id="jobCompany"></span>
+          </div>
+        </div>
+        <button class="btn-clear-job" id="clearJobBtn" title="Clear job">×</button>
+      </div>
+
+      <!-- Action Button -->
+      <button class="btn btn-primary" id="captureBtn" disabled>
+        <span class="btn-icon">📋</span>
+        Capture Job
+      </button>
+      <button class="btn btn-generate" id="generateBtn" style="display: none;">
+        <span class="btn-icon">🚀</span>
+        Generate
+      </button>
+    </main>
+
+    <footer class="popup-footer">
+      <button class="link-btn" id="settingsBtn">
+        <span>⚙️</span> Settings
+      </button>
+      <button class="link-btn" id="profilesBtn">
+        <span>👤</span> Profiles
+      </button>
+      <button class="link-btn" id="privacyBtn">
+        <span>🔒</span> Privacy
+      </button>
+    </footer>
+  </div>
+
+  <script src="popup.js" type="module"></script>
+</body>
+
+</html>

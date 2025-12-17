@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results - AI Career Customizer</title>
+    <link rel="stylesheet" href="results.css">
+</head>
+
+<body>
+    <div class="results-container">
+        <header class="results-header">
+            <div class="header-content">
+                <h1>✨ AI Career Customizer</h1>
+                <div class="job-info" id="jobInfo">
+                    <span class="job-title" id="headerJobTitle"></span>
+                    <span class="job-company" id="headerJobCompany"></span>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-secondary" id="regenerateBtn">
+                    🔄 Regenerate
+                </button>
+                <button class="btn btn-secondary" id="newJobBtn">
+                    📋 New Job
+                </button>
+            </div>
+        </header>
+
+        <main class="results-main">
+            <!-- Loading State -->
+            <div class="loading-state" id="loadingState">
+                <div class="loading-spinner"></div>
+                <p class="loading-text" id="loadingText">Analyzing job posting...</p>
+                <div class="loading-progress">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+            </div>
+
+            <!-- Error State -->
+            <div class="error-state" id="errorState" style="display: none;">
+                <div class="error-icon">❌</div>
+                <h2>Something went wrong</h2>
+                <p id="errorMessage"></p>
+                <button class="btn btn-primary" id="retryBtn">Try Again</button>
+            </div>
+
+            <!-- Results Content -->
+            <div class="results-content" id="resultsContent" style="display: none;">
+                <!-- Tabs -->
+                <div class="tabs">
+                    <button class="tab active" data-tab="resume">
+                        📄 Tailored Resume
+                    </button>
+                    <button class="tab" data-tab="coverLetter">
+                        ✉️ Cover Letter
+                    </button>
+                    <button class="tab" data-tab="analysis">
+                        🔍 Job Analysis
+                    </button>
+                </div>
+
+                <!-- Tab Panels -->
+                <div class="tab-panel active" id="resumePanel">
+                    <div class="panel-header">
+                        <h2>Tailored Resume</h2>
+                        <div class="panel-actions">
+                            <button class="btn-icon" id="copyResume" title="Copy to clipboard">
+                                📋
+                            </button>
+                            <button class="btn-icon" id="downloadResumePdf" title="Download as PDF">
+                                📥 PDF
+                            </button>
+                            <button class="btn-icon" id="downloadResumeDocx" title="Download as Word">
+                                📄 DOCX
+                            </button>
+                            <button class="btn-icon" id="editResume" title="Edit">
+                                ✏️
+                            </button>
+                        </div>
+                    </div>
+                    <div class="content-area" id="resumeContent">
+                        <!-- Resume content will be inserted here -->
+                    </div>
+                    <textarea class="edit-area" id="resumeEdit" style="display: none;"></textarea>
+                </div>
+
+                <div class="tab-panel" id="coverLetterPanel">
+                    <div class="panel-header">
+                        <h2>Cover Letter</h2>
+                        <div class="panel-actions">
+                            <button class="btn-icon" id="copyCoverLetter" title="Copy to clipboard">
+                                📋
+                            </button>
+                            <button class="btn-icon" id="downloadCoverLetterPdf" title="Download as PDF">
+                                📥 PDF
+                            </button>
+                            <button class="btn-icon" id="downloadCoverLetterDocx" title="Download as Word">
+                                📄 DOCX
+                            </button>
+                            <button class="btn-icon" id="editCoverLetter" title="Edit">
+                                ✏️
+                            </button>
+                        </div>
+                    </div>
+                    <div class="content-area" id="coverLetterContent">
+                        <!-- Cover letter content will be inserted here -->
+                    </div>
+                    <textarea class="edit-area" id="coverLetterEdit" style="display: none;"></textarea>
+                </div>
+
+                <div class="tab-panel" id="analysisPanel">
+                    <div class="panel-header">
+                        <h2>Job Analysis</h2>
+                    </div>
+                    <div class="analysis-content" id="analysisContent">
+                        <!-- Job analysis will be inserted here -->
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Customization Sidebar -->
+        <aside class="customization-sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h3>⚡ Customization</h3>
+                <button class="btn-icon" id="toggleSidebar">◀</button>
+            </div>
+
+            <div class="sidebar-content">
+                <section class="sidebar-section">
+                    <h4>Emphasis</h4>
+                    <p class="section-hint">Adjust which sections to emphasize</p>
+
+                    <div class="emphasis-control">
+                        <label>Experience</label>
+                        <input type="range" min="1" max="5" value="3" id="emphasisExperience">
+                    </div>
+
+                    <div class="emphasis-control">
+                        <label>Skills</label>
+                        <input type="range" min="1" max="5" value="3" id="emphasisSkills">
+                    </div>
+
+                    <div class="emphasis-control">
+                        <label>Education</label>
+                        <input type="range" min="1" max="5" value="3" id="emphasisEducation">
+                    </div>
+
+                    <div class="emphasis-control">
+                        <label>Projects</label>
+                        <input type="range" min="1" max="5" value="3" id="emphasisProjects">
+                    </div>
+                </section>
+
+                <section class="sidebar-section">
+                    <h4>Cover Letter Tone</h4>
+                    <select id="coverLetterTone" class="form-select">
+                        <option value="professional">Professional</option>
+                        <option value="enthusiastic">Enthusiastic</option>
+                        <option value="confident">Confident</option>
+                        <option value="creative">Creative</option>
+                    </select>
+                </section>
+
+                <button class="btn btn-primary btn-full" id="applyCustomization">
+                    Apply Changes
+                </button>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer"></div>
+
+    <script src="results.js" type="module"></script>
+</body>
+
+</html>

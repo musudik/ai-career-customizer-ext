@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - AI Career Customizer</title>
+    <link rel="stylesheet" href="settings.css">
+</head>
+
+<body>
+    <div class="settings-container">
+        <header class="settings-header">
+            <a href="#" class="back-link" id="backBtn">← Back</a>
+            <h1>Settings</h1>
+        </header>
+
+        <!-- Consent Modal Container -->
+        <div id="consentContainer"></div>
+
+        <main class="settings-main">
+            <!-- Provider Section -->
+            <section class="settings-section">
+                <h2>AI Provider</h2>
+                <div class="form-group">
+                    <label for="provider">Select Provider</label>
+                    <select id="provider" class="form-select">
+                        <option value="">Choose a provider...</option>
+                        <option value="openai">OpenAI</option>
+                        <option value="anthropic">Anthropic</option>
+                        <option value="gemini">Google Gemini</option>
+                        <option value="openrouter">OpenRouter</option>
+                        <option value="perplexity">Perplexity</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="modelGroup" style="display: none;">
+                    <label for="model">Select Model</label>
+                    <select id="model" class="form-select">
+                        <option value="">Choose a model...</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="apiKeyGroup" style="display: none;">
+                    <label for="apiKey">API Key</label>
+                    <div class="input-with-toggle">
+                        <input type="password" id="apiKey" class="form-input" placeholder="Enter your API key">
+                        <button type="button" class="toggle-visibility" id="toggleApiKey">👁️</button>
+                    </div>
+                    <small class="form-hint" id="apiKeyHint"></small>
+                </div>
+
+                <button class="btn btn-primary" id="saveApiBtn" style="display: none;">Save API Settings</button>
+            </section>
+
+            <!-- Resume Section -->
+            <section class="settings-section">
+                <h2>Resume</h2>
+                <div class="resume-upload-area" id="resumeUploadArea">
+                    <div class="upload-icon">📄</div>
+                    <p>Drag & drop your resume here, or click to browse</p>
+                    <small>Supports PDF, DOCX, and TXT files</small>
+                    <input type="file" id="resumeFile" accept=".pdf,.docx,.doc,.txt" hidden>
+                </div>
+
+                <div class="resume-status" id="resumeStatus" style="display: none;">
+                    <span class="status-icon">✓</span>
+                    <span class="status-text" id="resumeFileName"></span>
+                    <button class="btn-icon-only" id="clearResume">✕</button>
+                </div>
+
+                <div class="form-group">
+                    <label for="resumeText">Or paste your resume text</label>
+                    <textarea id="resumeText" class="form-textarea" rows="8"
+                        placeholder="Paste your resume content here..."></textarea>
+                </div>
+
+                <button class="btn btn-primary" id="saveResumeBtn">Save Resume</button>
+            </section>
+
+            <!-- Profiles Section -->
+            <section class="settings-section" id="profilesSection">
+                <h2>Saved Profiles</h2>
+                <div class="profiles-list" id="profilesList">
+                    <p class="empty-state">No profiles saved yet</p>
+                </div>
+
+                <div class="profile-actions">
+                    <input type="text" id="profileName" class="form-input" placeholder="Profile name">
+                    <button class="btn btn-secondary" id="saveProfileBtn">Save Current as Profile</button>
+                </div>
+            </section>
+
+            <!-- Privacy Settings -->
+            <section class="settings-section">
+                <h2>Privacy</h2>
+
+                <label class="toggle-setting">
+                    <span class="toggle-label">
+                        <strong>PII Anonymization</strong>
+                        <small>Remove personal info before sending to AI</small>
+                    </span>
+                    <input type="checkbox" id="piiAnonymization">
+                    <span class="toggle-switch"></span>
+                </label>
+
+                <div class="danger-zone">
+                    <h3>Danger Zone</h3>
+                    <button class="btn btn-danger" id="clearAllData">Clear All Data</button>
+                    <button class="btn btn-secondary" id="revokeConsent">Revoke Consent</button>
+                </div>
+            </section>
+        </main>
+
+        <footer class="settings-footer">
+            <a href="../privacy/privacy.html" class="link">Privacy Policy</a>
+            <span class="version">v1.0.0</span>
+        </footer>
+    </div>
+
+    <script src="settings.js" type="module"></script>
+</body>
+
+</html>
