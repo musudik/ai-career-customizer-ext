@@ -1,8 +1,8 @@
-# AI Career Customizer
+# CoverGen 
 
 A Chrome extension that uses AI to generate tailored resumes and cover letters for job applications.
 
-![AI Career Customizer](icons/icon128.svg)
+![CoverGen](icons/icon128.png)
 
 ## ✨ Features
 
@@ -10,6 +10,7 @@ A Chrome extension that uses AI to generate tailored resumes and cover letters f
 - **📄 Tailored Resume** - AI-powered resume customization for each job application
 - **✉️ Cover Letter** - Generate personalized cover letters instantly
 - **🌍 Multi-language** - Output in German (DE) or English (EN)
+- **🔄 Translation** - Toggle between DE↔EN translation for generated documents
 - **🤖 Multiple AI Providers** - OpenAI, Anthropic Claude, Google Gemini, OpenRouter, Perplexity
 - **🔒 Privacy First** - Your data stays on your device, API calls go directly to providers
 - **📥 Export Options** - Download as PDF or DOCX
@@ -71,7 +72,7 @@ In the results page sidebar, you can:
 ## 🏗️ Project Structure
 
 ```
-ai-career-customizer-ext/
+covergen-ext/
 ├── manifest.json          # Extension manifest
 ├── popup/                  # Extension popup UI
 │   ├── popup.html

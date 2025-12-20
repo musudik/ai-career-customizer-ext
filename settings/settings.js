@@ -1,4 +1,4 @@
-// AI Career Customizer - Settings Page Script
+// CoverGen  - Settings Page Script
 import { StorageManager } from '../lib/storage.js';
 import { ConsentManager } from '../lib/consent.js';
 import { ResumeParser } from '../lib/resume-parser.js';

@@ -1,4 +1,4 @@
-// AI Career Customizer - Background Service Worker
+// CoverGen  - Background Service Worker
 import { StorageManager } from '../lib/storage.js';
 
 const storage = new StorageManager();

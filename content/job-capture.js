@@ -1,4 +1,4 @@
-// AI Career Customizer - Content Script for Job Capture
+// CoverGen  - Content Script for Job Capture
 (function () {
     // Listen for messages from popup
     chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {

@@ -1,4 +1,4 @@
-// AI Career Customizer - Popup Script
+// CoverGen  - Popup Script
 import { StorageManager } from '../lib/storage.js';
 import { ConsentManager } from '../lib/consent.js';
 

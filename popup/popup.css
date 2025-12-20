@@ -206,7 +206,9 @@ body {
 }
 
 .logo-icon {
-  font-size: 20px;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
   animation: sparkle 2s ease-in-out infinite;
 }
 

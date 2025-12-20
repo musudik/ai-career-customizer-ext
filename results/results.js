@@ -1,4 +1,4 @@
-// AI Career Customizer - Results Page Script
+// CoverGen  - Results Page Script
 import { StorageManager } from '../lib/storage.js';
 import { ProviderFactory } from '../lib/ai-providers/provider-factory.js';
 import { PIIFilter } from '../lib/pii-filter.js';
@@ -16,6 +16,13 @@ class ResultsController {
         this.generatedResume = null;
         this.generatedCoverLetter = null;
         this.isEditing = { resume: false, coverLetter: false };
+
+        // Translation state - keeps original for export
+        this.originalResume = null;
+        this.originalCoverLetter = null;
+        this.originalLanguage = 'de'; // Will be set from generation options
+        this.currentLang = { resume: null, coverLetter: null }; // null = original, 'de' or 'en' = translated
+        this.isTranslating = { resume: false, coverLetter: false };
 
         this.init();
     }
@@ -143,10 +150,22 @@ class ResultsController {
         document.getElementById('applyCustomization').addEventListener('click', () => {
             this.applyCustomization();
         });
+
+        // Translate buttons
+        document.getElementById('translateResume').addEventListener('click', () => {
+            this.toggleTranslation('resume');
+        });
+
+        document.getElementById('translateCoverLetter').addEventListener('click', () => {
+            this.toggleTranslation('coverLetter');
+        });
     }
 
     async generateDocuments() {
         const options = await this.storage.getGenerationOptions();
+
+        // Store original language for translation toggle
+        this.originalLanguage = options.language || 'de';
 
         this.updateProgress(10, 'Analyzing job posting...');
 
@@ -167,6 +186,9 @@ class ResultsController {
                     this.jobAnalysis,
                     { ...this.getEmphasisOptions(), language: options.language || 'de' }
                 );
+                // Store original for export
+                this.originalResume = this.generatedResume;
+                this.currentLang.resume = null; // null means showing original
                 this.updateProgress(70, 'Resume generated...');
                 this.displayResume();
             }
@@ -182,6 +204,9 @@ class ResultsController {
                         language: options.language || 'de'
                     }
                 );
+                // Store original for export
+                this.originalCoverLetter = this.generatedCoverLetter;
+                this.currentLang.coverLetter = null; // null means showing original
                 this.updateProgress(95, 'Cover letter generated...');
                 this.displayCoverLetter();
             }
@@ -401,7 +426,10 @@ class ResultsController {
     }
 
     async exportDocument(type, format) {
-        const content = type === 'resume' ? this.generatedResume : this.generatedCoverLetter;
+        // Always export ORIGINAL content, not translated
+        const content = type === 'resume'
+            ? (this.originalResume || this.generatedResume)
+            : (this.originalCoverLetter || this.generatedCoverLetter);
         const docType = type === 'resume' ? 'Resume' : 'CoverLetter';
 
         if (!content) {
@@ -437,6 +465,74 @@ class ResultsController {
         document.getElementById('resultsContent').style.display = 'none';
         document.getElementById('loadingState').style.display = 'flex';
         await this.generateDocuments();
+    }
+
+    async toggleTranslation(type) {
+        // Prevent multiple simultaneous translations
+        if (this.isTranslating[type]) return;
+
+        const content = type === 'resume' ? this.generatedResume : this.generatedCoverLetter;
+        const original = type === 'resume' ? this.originalResume : this.originalCoverLetter;
+        const btn = document.getElementById(type === 'resume' ? 'translateResume' : 'translateCoverLetter');
+
+        if (!content) {
+            this.showToast(`No ${type} to translate`, 'error');
+            return;
+        }
+
+        // If currently showing translated version, revert to original
+        if (this.currentLang[type] !== null) {
+            if (type === 'resume') {
+                this.generatedResume = this.originalResume;
+                this.displayResume();
+            } else {
+                this.generatedCoverLetter = this.originalCoverLetter;
+                this.displayCoverLetter();
+            }
+            this.currentLang[type] = null;
+            btn.classList.remove('active');
+            btn.title = 'Translate DE↔EN';
+            this.showToast(`Showing original ${type === 'resume' ? 'resume' : 'cover letter'}`, 'success');
+            return;
+        }
+
+        // Translate to opposite language
+        const targetLang = this.originalLanguage === 'de' ? 'en' : 'de';
+        const targetLangName = targetLang === 'de' ? 'German' : 'English';
+
+        this.isTranslating[type] = true;
+        btn.classList.add('loading');
+        btn.innerHTML = '⏳';
+
+        try {
+            const translationPrompt = `Translate the following ${type === 'resume' ? 'resume' : 'cover letter'} to ${targetLangName}. 
+Keep the same formatting, structure, and professional tone. Only translate the text, do not add or remove any content.
+
+${original}`;
+
+            const translated = await this.provider.generateCompletion(translationPrompt);
+
+            if (type === 'resume') {
+                this.generatedResume = translated;
+                this.displayResume();
+            } else {
+                this.generatedCoverLetter = translated;
+                this.displayCoverLetter();
+            }
+
+            this.currentLang[type] = targetLang;
+            btn.classList.add('active');
+            btn.title = `Showing ${targetLangName} - Click to show original`;
+            this.showToast(`Translated to ${targetLangName}`, 'success');
+
+        } catch (error) {
+            console.error('Translation error:', error);
+            this.showToast(`Translation failed: ${error.message}`, 'error');
+        } finally {
+            this.isTranslating[type] = false;
+            btn.classList.remove('loading');
+            btn.innerHTML = '🌐';
+        }
     }
 
     showToast(message, type = 'success') {
